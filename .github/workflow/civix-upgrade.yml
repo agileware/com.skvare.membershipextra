@@ -1,0 +1,15 @@
+name: civix upgrade
+on:
+  push: {}
+  workflow_dispatch: {}
+  schedule:
+    - cron: '23 18 * * 3' # Thursday 4:23am AEDT
+
+jobs:
+  civix-upgrade:
+    uses: agileware/ci-workflows/.github/workflows/civix-upgrade.yml@main
+    secrets:
+      DOCKERHUB_USER: ${{ secrets.DOCKERHUB_USER }}
+      DOCKERHUB_TOKEN: ${{ secrets.DOCKERHUB_TOKEN }}
+    with:
+      EXTENSION_NAME: com.pogstone.fancytokens
