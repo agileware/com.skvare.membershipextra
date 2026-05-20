@@ -13,39 +13,12 @@ function membershipextra_civicrm_config(&$config) {
 }
 
 /**
- * Implements hook_civicrm_xmlMenu().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_xmlMenu
- */
-function membershipextra_civicrm_xmlMenu(&$files) {
-  _membershipextra_civix_civicrm_xmlMenu($files);
-}
-
-/**
  * Implements hook_civicrm_install().
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_install
  */
 function membershipextra_civicrm_install() {
   _membershipextra_civix_civicrm_install();
-}
-
-/**
- * Implements hook_civicrm_postInstall().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_postInstall
- */
-function membershipextra_civicrm_postInstall() {
-  _membershipextra_civix_civicrm_postInstall();
-}
-
-/**
- * Implements hook_civicrm_uninstall().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_uninstall
- */
-function membershipextra_civicrm_uninstall() {
-  _membershipextra_civix_civicrm_uninstall();
 }
 
 /**
@@ -57,90 +30,6 @@ function membershipextra_civicrm_enable() {
   _membershipextra_civix_civicrm_enable();
 }
 
-/**
- * Implements hook_civicrm_disable().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_disable
- */
-function membershipextra_civicrm_disable() {
-  _membershipextra_civix_civicrm_disable();
-}
-
-/**
- * Implements hook_civicrm_upgrade().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_upgrade
- */
-function membershipextra_civicrm_upgrade($op, CRM_Queue_Queue $queue = NULL) {
-  return _membershipextra_civix_civicrm_upgrade($op, $queue);
-}
-
-/**
- * Implements hook_civicrm_managed().
- *
- * Generate a list of entities to create/deactivate/delete when this module
- * is installed, disabled, uninstalled.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_managed
- */
-function membershipextra_civicrm_managed(&$entities) {
-  _membershipextra_civix_civicrm_managed($entities);
-}
-
-/**
- * Implements hook_civicrm_caseTypes().
- *
- * Generate a list of case-types.
- *
- * Note: This hook only runs in CiviCRM 4.4+.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_caseTypes
- */
-function membershipextra_civicrm_caseTypes(&$caseTypes) {
-  _membershipextra_civix_civicrm_caseTypes($caseTypes);
-}
-
-/**
- * Implements hook_civicrm_angularModules().
- *
- * Generate a list of Angular modules.
- *
- * Note: This hook only runs in CiviCRM 4.5+. It may
- * use features only available in v4.6+.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_angularModules
- */
-function membershipextra_civicrm_angularModules(&$angularModules) {
-  _membershipextra_civix_civicrm_angularModules($angularModules);
-}
-
-/**
- * Implements hook_civicrm_alterSettingsFolders().
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_alterSettingsFolders
- */
-function membershipextra_civicrm_alterSettingsFolders(&$metaDataFolders = NULL) {
-  _membershipextra_civix_civicrm_alterSettingsFolders($metaDataFolders);
-}
-
-/**
- * Implements hook_civicrm_entityTypes().
- *
- * Declare entity types provided by this module.
- *
- * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_entityTypes
- */
-function membershipextra_civicrm_entityTypes(&$entityTypes) {
-  _membershipextra_civix_civicrm_entityTypes($entityTypes);
-}
-
-/**
- * Implements hook_civicrm_thems().
- */
-function membershipextra_civicrm_themes(&$themes) {
-  _membershipextra_civix_civicrm_themes($themes);
-}
-
 // --- Functions below this ship commented out. Uncomment as required. ---
 
 /**
@@ -148,9 +37,8 @@ function membershipextra_civicrm_themes(&$themes) {
  *
  * @link https://docs.civicrm.org/dev/en/latest/hooks/hook_civicrm_preProcess
  *
-function membershipextra_civicrm_preProcess($formName, &$form) {
 
-} // */
+ // */
 
 /**
  * Implements hook_civicrm_navigationMenu().
@@ -225,7 +113,6 @@ function membershipextra_civicrm_postProcess($formName, &$form) {
     }
   }
 }
-
 
 function membershipextra_civicrm_validateForm($formName, &$fields, &$files, &$form, &$errors) {
   if ($formName == 'CRM_Contribute_Form_Contribution_Main') {
@@ -373,3 +260,21 @@ function _membershipextra_get_form_contact_id($form) {
 // https://www.voucherify.io/blog/powerful-gift-card-voucher-system
 // https://github.com/joashp/simple-php-coupon-code-generator
 // http://sparagino.it/2015/11/27/unique-random-coupon-code-generation-in-php/
+
+/**
+ * Implements hook_civicrm_scanClasses
+ *
+ * @see CRM_Utils_Hook::scanClasses()
+ */
+function membershipextra_civicrm_scanClasses(array &$classes) {
+  // Example 1: Declare the exact classes that should be scanned.
+  // $classes[] = "CRM_Example_Class";
+
+  // Example 2: Scan specific subfolder(s)
+  \Civi\Core\ClassScanner::scanFolders($classes, __DIR__, 'Civi/Api4', '\\');
+  // \Civi\Core\ClassScanner::scanFolders($classes, __DIR__, 'Civi/Foobar', '\\');
+  // \Civi\Core\ClassScanner::scanFolders($classes, __DIR__, 'CRM/Foobar', '_');
+
+  // Example 3: Scan specific folder(s), with exclusions
+  // \Civi\Core\ClassScanner::scanFolders($classes, __DIR__, 'Civi', '\\', ';...regex...;');
+}
