@@ -23,7 +23,7 @@
   <comments>This is a new, undeveloped module</comments>
   <civix>
     <namespace>CRM/Membershipextra</namespace>
-    <format>25.10.2</format>
+    <format>26.10.3</format>
   </civix>
   <mixins>
     <mixin>mgd-php@2.0.0</mixin>
