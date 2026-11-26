@@ -54,7 +54,6 @@ function membershipextra_civicrm_navigationMenu(&$menu) {
     'operator' => 'OR',
     'separator' => 0,
   ));
-  _membershipextra_civix_navigationMenu($menu);
 } // */
 
 
